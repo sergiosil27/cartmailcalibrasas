@@ -4,8 +4,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <img src="/images/{{ $item->attributes->image }}"
-                         style="width: 50px; height: 50px;"
-                    >
+                         style="width: 50px; height: 50px;">
                 </div>
                 <div class="col-lg-6">
                     <b>{{$item->name}}</b>

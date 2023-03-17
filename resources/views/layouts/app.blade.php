@@ -5,14 +5,17 @@
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Calibrasas</title>
+
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link rel="icon" href="img/restaurant.png">
     <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="fonts/icomoon/style.css">
-        <link rel="stylesheet" href={{ url('css/app.css') }}>
+        <!--<link rel="stylesheet" href={{ url('css/app.css') }}>-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
     
@@ -26,7 +29,19 @@
                                 <a href="index.php"><img src="img/LOGO AGR.png" alt="" style="width: 210px; height: 80px; margin-bottom: 10px;"></a>
                             </div>
                             <div class="login-content">
-                                <a href="login">Login</a>
+                                @if (Route::has('login'))
+                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                    @auth
+                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                    @else
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
                                 
                             </div>
                         </div>
@@ -49,29 +64,11 @@
                                 <ul>
                                     <li><a href="/">Inicio</a></li>
                                     <li><a href="nosotros">Nosotros</a></li>
-                                    <li><a href="menu">Menu</a>
-                                        <!--<div class="megamenu">
-                                            <ul class="single-mega cn-col-4">
-                                                <li><a href="#">#</a></li>
-                                                <li><a href="#"># &amp; #</a></li>
-                                                <li><a href="#">#</a></li>
-                                                <li><a href="#">#</a></li>
-                                                <li><a href="#">#</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li><a href="#">#</a></li>
-                                                <li><a href="#"># &amp;#</a></li>
-                                                <li><a href="#">#</a></li>
-                                                <li><a href="#">#</a></li>
-                                                <li><a href="#">#</a></li>
-                                            </ul>
-                                        </div>-->
-                                    </li>
+                                    <li><a href="menu">Menu</a></li>
                                     <li><a href="reservas">Reservas</a></li><li class="nav-item dropdown">
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle"
                                            href="#" role="button" data-toggle="dropdown"
-                                           aria-haspopup="true" aria-expanded="false"
-                                        >
+                                           aria-haspopup="true" aria-expanded="false">
                                             <span class="badge badge-pill badge-dark">
                                                 <i class="fa fa-shopping-cart"></i> {{ \Cart::getTotalQuantity()}}
                                             </span>
@@ -83,7 +80,8 @@
                                             </ul>
                     
                                         </div>
-                                    </li>                                </ul>
+                                    </li>
+                                </ul>
 
 
 
@@ -91,7 +89,7 @@
                         </div>
                         <div class="calling-info">
                             <div class="call-center">
-                                <a href="tel:+573196025938"><i class="icon-telephone-2"></i> <span>(+57) 319 602 5938</span></a>
+                                <a href="tel:+573008108889"><i class="icon-telephone-2"></i> <span>(+57) 300 810 8889</span></a>
                             </div>
                         </div>
                     </nav>
@@ -133,7 +131,7 @@
                             </div>
                             <div class="single-contact d-flex mb-30">
                                 <i class="icon-telephone-1"></i>
-                                <p>Fijo: 345 6788 <br>Oficina: 312 345 6789</p>
+                                <p>Fijo: 345 6788 <br>Oficina: 300 810 8889</p>
                             </div>
                             <div class="single-contact d-flex">
                                 <i class="icon-contract"></i>
