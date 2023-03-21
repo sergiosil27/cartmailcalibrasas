@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use App\Models\Proveedore;
+use App\Models\Plato;
+use App\Models\Venta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 /**
- * Class ProductController
+ * Class VentaController
  * @package App\Http\Controllers
  */
-class ProductController extends Controller
+class VentaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,10 +21,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate();
+        $ventas = Venta::paginate();
 
-        return view('product.index', compact('products'))
-            ->with('i', (request()->input('page', 1) - 1) * $products->perPage());
+        return view('venta.index', compact('ventas'))
+            ->with('i', (request()->input('page', 1) - 1) * $ventas->perPage());
     }
 
     /**
@@ -32,9 +34,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $product = new Product();
-        $proveedores = Proveedore::all();
-        return view('product.create', compact('product','proveedores'));
+        $venta = new Venta();
+        $platos = Plato::all();
+        return view('venta.create', compact('venta','platos'));
     }
 
     /**
@@ -45,12 +47,12 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Product::$rules);
+        request()->validate(Venta::$rules);
 
-        $product = Product::create($request->all());
+        $venta = Venta::create($request->all());
 
-        return redirect()->route('products.index')
-            ->with('success', 'Product created successfully.');
+        return redirect()->route('ventas.index')
+            ->with('success', 'Venta created successfully.');
     }
 
     /**
@@ -61,9 +63,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::find($id);
+        $venta = Venta::find($id);
 
-        return view('product.show', compact('product'));
+        return view('venta.show', compact('venta'));
     }
 
     /**
@@ -74,26 +76,26 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::find($id);
+        $venta = Venta::find($id);
 
-        return view('product.edit', compact('product'));
+        return view('venta.edit', compact('venta'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  Product $product
+     * @param  Venta $venta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Venta $venta)
     {
-        request()->validate(Product::$rules);
+        request()->validate(Venta::$rules);
 
-        $product->update($request->all());
+        $venta->update($request->all());
 
-        return redirect()->route('products.index')
-            ->with('success', 'Product updated successfully');
+        return redirect()->route('ventas.index')
+            ->with('success', 'Venta updated successfully');
     }
 
     /**
@@ -103,9 +105,13 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::find($id)->delete();
+        $venta = Venta::find($id)->delete();
 
-        return redirect()->route('products.index')
-            ->with('success', 'Product deleted successfully');
+        return redirect()->route('ventas.index')
+            ->with('success', 'Venta deleted successfully');
     }
+
+// ...
+
+
 }

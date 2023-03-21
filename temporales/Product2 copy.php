@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Product extends Model
 {
-
+    
     static $rules = [
 		'nombre' => 'required',
 		'precio' => 'required',
@@ -45,6 +45,6 @@ class Product extends Model
     {
         return $this->hasOne('App\Proveedore', 'id', 'proveedor_id');
     }
-
+    
 
 }

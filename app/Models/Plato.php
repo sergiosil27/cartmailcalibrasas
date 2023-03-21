@@ -5,27 +5,28 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Product
+ * Class Plato
  *
  * @property $id
  * @property $nombre
- * @property $detalle
+ * @property $descripcion
  * @property $precio
- * @property $proveedor_id
+ * @property $image_path
  * @property $created_at
  * @property $updated_at
  *
- * @property Proveedore $proveedore
+ * @property DetalleVenta[] $detalleVentas
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Product extends Model
+class Plato extends Model
 {
 
     static $rules = [
 		'nombre' => 'required',
+		'descripcion' => 'required',
 		'precio' => 'required',
-		'proveedor_id' => 'required',
+		'image_path' => 'required',
     ];
 
     protected $perPage = 20;
@@ -35,15 +36,15 @@ class Product extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre','detalle','precio','proveedor_id'];
+    protected $fillable = ['nombre','descripcion','precio','image_path'];
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function proveedore()
+    public function detalleVentas()
     {
-        return $this->hasOne('App\Proveedore', 'id', 'proveedor_id');
+        return $this->hasMany('App\DetalleVenta', 'plato_id', 'id');
     }
 
 

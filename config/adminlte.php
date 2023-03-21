@@ -312,8 +312,8 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
+            'text'        => 'clientes',
+            'url'         => 'admin/clientes',
             'icon'        => 'far fa-fw fa-file',
             'label'       => 4,
             'label_color' => 'success',
@@ -323,10 +323,25 @@ return [
             'url'         => 'admin/products',
             'icon'        => 'far fa-fw fa-file',
         ],
+        [
+            'text'        => 'Proveedores',
+            'url'         => 'admin/proveedores',
+            'icon'        => 'far fa-fw fa-file',
+        ],
+        [
+            'text'        => 'Ventas',
+            'url'         => 'admin/ventas',
+            'icon'        => 'far fa-fw fa-file',
+        ],
+        [
+            'text'        => 'Platos',
+            'url'         => 'admin/platos',
+            'icon'        => 'far fa-fw fa-file',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
-            'url'  => 'admin/settings',
+            'url'  => 'profile/show',
             'icon' => 'fas fa-fw fa-user',
         ],
         [

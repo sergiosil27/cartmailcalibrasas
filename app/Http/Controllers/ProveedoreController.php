@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use App\Models\Proveedore;
 use Illuminate\Http\Request;
 
 /**
- * Class ProductController
+ * Class ProveedoreController
  * @package App\Http\Controllers
  */
-class ProductController extends Controller
+class ProveedoreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,10 +18,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate();
+        $proveedores = Proveedore::paginate();
 
-        return view('product.index', compact('products'))
-            ->with('i', (request()->input('page', 1) - 1) * $products->perPage());
+        return view('proveedore.index', compact('proveedores'))
+            ->with('i', (request()->input('page', 1) - 1) * $proveedores->perPage());
     }
 
     /**
@@ -32,9 +31,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $product = new Product();
-        $proveedores = Proveedore::all();
-        return view('product.create', compact('product','proveedores'));
+        $proveedore = new Proveedore();
+        return view('proveedore.create', compact('proveedore'));
     }
 
     /**
@@ -45,12 +43,12 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Product::$rules);
+        request()->validate(Proveedore::$rules);
 
-        $product = Product::create($request->all());
+        $proveedore = Proveedore::create($request->all());
 
-        return redirect()->route('products.index')
-            ->with('success', 'Product created successfully.');
+        return redirect()->route('proveedores.index')
+            ->with('success', 'Proveedore created successfully.');
     }
 
     /**
@@ -61,9 +59,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::find($id);
+        $proveedore = Proveedore::find($id);
 
-        return view('product.show', compact('product'));
+        return view('proveedore.show', compact('proveedore'));
     }
 
     /**
@@ -74,26 +72,26 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::find($id);
+        $proveedore = Proveedore::find($id);
 
-        return view('product.edit', compact('product'));
+        return view('proveedore.edit', compact('proveedore'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  Product $product
+     * @param  Proveedore $proveedore
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Proveedore $proveedore)
     {
-        request()->validate(Product::$rules);
+        request()->validate(Proveedore::$rules);
 
-        $product->update($request->all());
+        $proveedore->update($request->all());
 
-        return redirect()->route('products.index')
-            ->with('success', 'Product updated successfully');
+        return redirect()->route('proveedores.index')
+            ->with('success', 'Proveedore updated successfully');
     }
 
     /**
@@ -103,9 +101,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::find($id)->delete();
+        $proveedore = Proveedore::find($id)->delete();
 
-        return redirect()->route('products.index')
-            ->with('success', 'Product deleted successfully');
+        return redirect()->route('proveedores.index')
+            ->with('success', 'Proveedore deleted successfully');
     }
 }

@@ -11,7 +11,7 @@ class HomeController extends Controller
      *
      * @return void
      */
-    
+
 
     /**
      * Show the application dashboard.
@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function nosotros(){
         return view("nosotros");
     }
-    
+
     public function menu(){
 
         return view("cart");
@@ -35,19 +35,8 @@ class HomeController extends Controller
         return view('reservas');
     }
 
-    public function shop(){
 
-        $articulos=Articulo::all();
-        $categorias=Categoria::all();
-        return view("shop",['articulos'=>$articulos,'categorias'=>$categorias]);
-    }
 
-    public function shop_single($id){
-
-        $articulos = Articulo::Find($id);
-        return view('shop_single',['articulos'=>$articulos]);
-    }
-    
     public function mision_vision(){
         return view('mision-vision');
     }

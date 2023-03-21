@@ -1,0 +1,53 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * Class Cliente
+ *
+ * @property $id
+ * @property $nombre
+ * @property $apellido
+ * @property $documento
+ * @property $telefono
+ * @property $email
+ * @property $created_at
+ * @property $updated_at
+ *
+ * @property Factura[] $facturas
+ * @package App
+ * @mixin \Illuminate\Database\Eloquent\Builder
+ */
+class Cliente extends Model
+{
+
+    static $rules = [
+		'nombre' => 'required',
+		'apellido' => 'required',
+		'documento' => 'required',
+		'telefono' => 'required',
+		'correo_electronico' => 'required',
+    ];
+
+    protected $perPage = 20;
+
+    /**
+     * Attributes that should be mass-assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['nombre','apellido','documento','telefono','correo_electronico'];
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function facturas()
+    {
+        return $this->hasMany('App\Factura', 'cliente_id', 'id');
+    }
+
+
+}

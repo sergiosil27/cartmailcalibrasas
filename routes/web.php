@@ -5,7 +5,11 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\ProveedoreController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\PlatoController;
+use App\Http\Controllers\VentaController;
+use App\Proveedore;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +60,13 @@ Route::middleware([
     Route::get('profile/show', function () {
         return view('profile.show');
     });
+
 });
 
 Route::resource('admin/products', ProductController::class);
+Route::resource('admin/proveedores', ProveedoreController::class);
+Route::resource('admin/ventas', VentaController::class);
+Route::resource('admin/platos', PlatoController::class);
+Route::resource('admin/clientes', ClienteController::class);
+
+

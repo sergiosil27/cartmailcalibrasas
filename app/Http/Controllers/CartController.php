@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Plato;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -10,9 +11,9 @@ class CartController extends Controller
 {
     public function shop()
     {
-        $products = Product::all();
+        $platos = Plato::all();
         //return $products;
-        return view('shop')->withTitle('E-COMMERCE STORE | SHOP')->with(['products' => $products]);
+        return view('shop')->with(['platos' => $platos]);
     }
 
     public function cart()  {
