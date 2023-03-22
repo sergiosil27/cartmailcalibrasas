@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Mike42\Escpos\PrintConnectors\NetworkPrintConnector;
+use Mike42\Escpos\Printer;
 use App\Models\Venta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
-use Mike42\Escpos\Printer;
 
 class VentasController extends Controller
 {
@@ -14,38 +15,9 @@ class VentasController extends Controller
     public function ticket(Request $request)
     {
         $venta = Venta::findOrFail($request->get("id"));
-        $nombreImpresora = env("NOMBRE_IMPRESORA");
-        $connector = new WindowsPrintConnector($nombreImpresora);
-        $impresora = new Printer($connector);
-        $impresora->setJustification(Printer::JUSTIFY_CENTER);
-        $impresora->setEmphasis(true);
-        $impresora->text("Ticket de venta\n");
-        $impresora->text($venta->created_at . "\n");
-        $impresora->setEmphasis(false);
-        $impresora->text("Cliente: ");
-        $impresora->text($venta->cliente->nombre . "\n");
-        $impresora->text("\nhttps://parzibyte.me/blog\n");
-        $impresora->text("\n===============================\n");
-        $total = 0;
-        foreach ($venta->productos as $producto) {
-            $subtotal = $producto->cantidad * $producto->precio;
-            $total += $subtotal;
-            $impresora->setJustification(Printer::JUSTIFY_LEFT);
-            $impresora->text(sprintf("%.2fx%s\n", $producto->cantidad, $producto->descripcion));
-            $impresora->setJustification(Printer::JUSTIFY_RIGHT);
-            $impresora->text('$' . number_format($subtotal, 2) . "\n");
-        }
-        $impresora->setJustification(Printer::JUSTIFY_CENTER);
-        $impresora->text("\n===============================\n");
-        $impresora->setJustification(Printer::JUSTIFY_RIGHT);
-        $impresora->setEmphasis(true);
-        $impresora->text("Total: $" . number_format($total, 2) . "\n");
-        $impresora->setJustification(Printer::JUSTIFY_CENTER);
-        $impresora->setTextSize(1, 1);
-        $impresora->text("Gracias por su compra\n");
-        $impresora->feed(5);
-        $impresora->close();
-        return redirect()->back()->with("mensaje", "Ticket impreso");
+        $pdf=PDF::loadView('ticket.pdf',['ventas'=>$venta]);
+        return $pdf->stream();
+        //return redirect()->back()->with("mensaje", "Ticket impreso");
     }
 
     /**

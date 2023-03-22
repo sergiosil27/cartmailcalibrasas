@@ -341,7 +341,7 @@ return [
         ],
         [
             'text'        => 'Platos',
-            'url'         => 'admin/platos',
+            'url'         => 'admin/productos',
             'icon'        => 'far fa-fw fa-file',
         ],
         ['header' => 'account_settings'],

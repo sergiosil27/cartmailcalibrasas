@@ -1,9 +1,7 @@
 @extends('adminlte::page')
 
-@section('template_title')
-    producto
-@endsection
-
+@section("titulo", "Productos")
+@section("content")
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -17,7 +15,7 @@
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('platos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('productos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -36,22 +34,26 @@
                                     <tr>
                                         <th>No</th>
 
-										<th>Nombre</th>
-										<th>Descripcion</th>
-										<th>Precio</th>
-										<th>Image Path</th>
-
+										<th>Código de barras</th>
+                                        <th>Descripción</th>
+                                        <th>Precio de compra</th>
+                                        <th>Precio de venta</th>
+                                        <th>Utilidad</th>
+                                        <th>Existencia</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($productos as $producto)
                                         <tr>
+                                            <td>{{ ++$i }}</td>
 
-											<td>{{ $producto->nombre }}</td>
-											<td>{{ $producto->descripcion }}</td>
-											<td>{{ $producto->precio }}</td>
-											<td>{{ $producto->image_path }}</td>
+											<td>{{$producto->codigo_barras}}</td>
+                                            <td>{{$producto->descripcion}}</td>
+                                            <td>{{$producto->precio_compra}}</td>
+                                            <td>{{$producto->precio_venta}}</td>
+                                            <td>{{$producto->precio_venta - $producto->precio_compra}}</td>
+                                            <td>{{$producto->existencia}}</td>
 
                                             <td>
                                                 <form action="{{ route('productos.destroy',$producto->id) }}" method="POST">

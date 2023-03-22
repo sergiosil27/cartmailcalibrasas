@@ -7,8 +7,9 @@ use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProveedoreController;
 use App\Http\Controllers\ClientesController;
-use App\Http\Controllers\PlatoController;
+use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\VentasController;
+use App\Http\Controllers\PlatoController;
 use App\Http\Controllers\VenderController;
 
 use App\Proveedore;
@@ -69,6 +70,7 @@ Route::resource('admin/products', ProductController::class);
 Route::resource('admin/proveedores', ProveedoreController::class);
 Route::resource('admin/platos', PlatoController::class);
 Route::resource('admin/clientes', ClientesController::class);
+Route::resource('admin/productos', ProductosController::class);
 
 Route::resource('admin/ventas', VentasController::class);
 
