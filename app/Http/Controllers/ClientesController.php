@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
  * Class ClienteController
  * @package App\Http\Controllers
  */
-class ClienteController extends Controller
+class ClientesController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -32,7 +32,7 @@
         @endisset
         @empty($proveedores)
         <div class="form-group">
-        <input type="text" readonly="readonly"  name="proveedor_id" value="{{ $product->nombre }}" class="form-control" placeholder="proveedor_id">
+        <input type="text" readonly="readonly"  name="proveedor_id" value="{{ $product->proveedor_id }}" class="form-control" placeholder="proveedor_id">
         </div>
         @endempty
 

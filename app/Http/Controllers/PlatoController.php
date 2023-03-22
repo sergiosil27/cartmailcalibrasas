@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Plato;
+use App\Models\Producto;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,7 @@ class PlatoController extends Controller
      */
     public function index()
     {
-        $platos = Plato::paginate();
+        $platos = Producto::paginate();
 
         return view('plato.index', compact('platos'))
             ->with('i', (request()->input('page', 1) - 1) * $platos->perPage());

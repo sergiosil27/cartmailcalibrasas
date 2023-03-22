@@ -50,7 +50,7 @@ class Venta extends Model
      */
     public function cliente()
     {
-        return $this->hasOne('App\Cliente', 'id', 'cliente_id');
+        return $this->hasOne('App\Models\Cliente', 'id', 'cliente_id');
     }
 
     /**

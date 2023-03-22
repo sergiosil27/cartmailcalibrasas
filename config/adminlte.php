@@ -312,7 +312,13 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'clientes',
+            'text'        => 'Vender',
+            'url'         => 'admin/vender',
+            'icon'        => 'far fa-fw fa-file',
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Clientes',
             'url'         => 'admin/clientes',
             'icon'        => 'far fa-fw fa-file',
             'label'       => 4,

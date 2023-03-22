@@ -6,9 +6,11 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProveedoreController;
-use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\PlatoController;
-use App\Http\Controllers\VentaController;
+use App\Http\Controllers\VentasController;
+use App\Http\Controllers\VenderController;
+
 use App\Proveedore;
 
 /*
@@ -65,8 +67,16 @@ Route::middleware([
 
 Route::resource('admin/products', ProductController::class);
 Route::resource('admin/proveedores', ProveedoreController::class);
-Route::resource('admin/ventas', VentaController::class);
 Route::resource('admin/platos', PlatoController::class);
-Route::resource('admin/clientes', ClienteController::class);
+Route::resource('admin/clientes', ClientesController::class);
 
+Route::resource('admin/ventas', VentasController::class);
+
+Route::get("/ventas/ticket", [VentasController::class,"ticket"])->name("ventas.ticket");
+Route::resource('/ventas', VentasController::class);
+Route::get("admin/vender", [VenderController::class,"index"])->name("vender.index");
+
+Route::post("/productoDeVenta", [VenderController::class,"agregarProductoVenta"])->name("agregarProductoVenta");
+Route::delete("/productoDeVenta", [VenderController::class,"quitarProductoDeVenta"])->name("quitarProductoDeVenta");
+Route::post("/terminarOCancelarVenta", [VenderController::class,"terminarOCancelarVenta"])->name("terminarOCancelarVenta");
 
