@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\Product;
 use App\Models\Producto;
 use App\Models\ProductoVendido;
 use App\Models\Venta;
@@ -150,6 +151,7 @@ class VenderController extends Controller
     public function index()
     {
         $total = 0;
+
         foreach ($this->obtenerProductos() as $producto) {
             $total += $producto->cantidad * $producto->precio_venta;
         }
@@ -157,6 +159,7 @@ class VenderController extends Controller
             [
                 "total" => $total,
                 "clientes" => Cliente::all(),
+                "productos" => Producto::all(),
             ]);
     }
 }
