@@ -4,7 +4,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<title>Ticket</title>
+		<title>Reporte</title>
 
 		<!-- Favicon -->
 		<link rel="icon" href="./images/favicon.png" type="image/x-icon" />
@@ -61,7 +61,7 @@
 			}
 
 			.invoice-box table tr td:nth-child(2) {
-				text-align: left;
+				text-align: right;
 			}
 
 			.invoice-box table tr.top table td {
@@ -118,49 +118,26 @@
 	</head>
 
 	<body>
+		
 		<div class="invoice-box">
 			<table>
 				<tr class="top">
-					<td colspan="4">
+					<td colspan="2">
 						<table>
 							<tr>
 								<td class="title">
 									<img src="img/LOGO AGR.png" alt="Company logo" style="width: 100%; max-width: 300px" />
 								</td>
 
-								<td>
-									Factura #: {{$ventas[0]->factura_id}} <br />
-									Created: {{$ventas[0]->created_at}} <br />
-								</td>
+								
 							</tr>
 						</table>
 					</td>
 				</tr>
 
-				<tr class="information">
-					<td colspan="4">
-						<table>
-							<tr>
-								<td>
-									<b>Empresa</b> <br />
-									<b>Razon social:</b>Calibrasas, Inc.<br />
-									<b>Dirrecion:</b>Cr 67 #3 45B sur<br />
-									Barrio, Centro
-								</td>
-								<td></td>
-								<td style="">
-									<b>Cliente</b> <br />
-									<b>Documento:</b>{{$ventas[0]->documento}}.<br />
-									<b>Nombres:</b>{{$ventas[0]->nombres.' '.$ventas[0]->apellido}} <br />
-									<b>Correo:</b> {{$ventas[0]->correo_electronico}}
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
 
 				<tr class="heading">
-					<td>Metodo de pago</td>
+					<td>Payment Method</td>
 
 					<td>Check #</td>
 				</tr>
@@ -173,33 +150,35 @@
 
 				<tr class="heading">
 					<td>Item</td>
-					<td>Cantidad</td>
-					<td>Precio</td>
-					<td>Subtotal</td>
-				</tr>
-				<?php $total=0?>
-				@foreach ($ventas as $venta)
-				<tr class="item">
-					<td>{{$venta->nombre}} </td>
-					<td>{{$venta->cantidad}} </td>
-					<td>${{number_format($venta->precio,2)}} </td>
-					<td>${{number_format($venta->cantidad*$venta->precio,2)}} </td>
-				</tr>
-				<?php $total=$total+($venta->cantidad*$venta->precio) ?>
-				@endforeach
 
-				
+					<td>Price</td>
+				</tr>
+
+				<tr class="item">
+					<td>Website design</td>
+
+					<td>$300.00</td>
+				</tr>
+
+				<tr class="item">
+					<td>Hosting (3 months)</td>
+
+					<td>$75.00</td>
+				</tr>
+
+				<tr class="item last">
+					<td>Domain name (1 year)</td>
+
+					<td>$10.00</td>
+				</tr>
 
 				<tr class="total">
 					<td></td>
-					<td></td>
-					<td><b>Total:</b></td>
 
-					<td>${{number_format($total,2)}} </td>
+					<td>Total: $385.00</td>
 				</tr>
 			</table>
 		</div>
-
-		<?php #echo ($ventas) ?>
+		<?php echo $ventas ?>
 	</body>
 </html>

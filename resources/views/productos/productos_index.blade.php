@@ -15,7 +15,7 @@
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('productos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('consumibles.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -34,11 +34,10 @@
                                     <tr>
                                         <th>No</th>
 
-										<th>Código de barras</th>
+										<th>Código</th>
+                                        <th>Nombre</th>
                                         <th>Descripción</th>
-                                        <th>Precio de compra</th>
                                         <th>Precio de venta</th>
-                                        <th>Utilidad</th>
                                         <th>Existencia</th>
                                         <th></th>
                                     </tr>
@@ -48,17 +47,16 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
 
-											<td>{{$producto->codigo_barras}}</td>
+											<td>{{$producto->codigo}}</td>
+                                            <td>{{$producto->nombre}}</td>
                                             <td>{{$producto->descripcion}}</td>
-                                            <td>{{$producto->precio_compra}}</td>
-                                            <td>{{$producto->precio_venta}}</td>
-                                            <td>{{$producto->precio_venta - $producto->precio_compra}}</td>
+                                            <td>{{$producto->precio}}</td>
                                             <td>{{$producto->existencia}}</td>
 
                                             <td>
-                                                <form action="{{ route('productos.destroy',$producto->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('productos.show',$producto->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('productos.edit',$producto->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                <form action="{{ route('consumibles.destroy',$producto->codigo) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('consumibles.show',$producto->codigo) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('consumibles.edit',$producto->codigo) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>

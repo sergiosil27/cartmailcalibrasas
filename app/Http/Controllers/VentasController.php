@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Factura;
 use Mike42\Escpos\PrintConnectors\NetworkPrintConnector;
 use Mike42\Escpos\Printer;
 use App\Models\Venta;
@@ -14,7 +16,14 @@ class VentasController extends Controller
 
     public function ticket(Request $request)
     {
-        $venta = Venta::findOrFail($request->get("id"));
+        echo $_GET['id'];
+        $venta = Factura::join("detallefacturas", "detallefacturas.factura_id", "=", "facturas.id")
+                ->join("clientes", "facturas.cliente_id", "=", "clientes.id")
+                ->join("consumibles","detallefacturas.consumible_id", "=", "codigo")
+                ->select('facturas.*', 'detallefacturas.*','consumibles.*','clientes.id','clientes.documento','clientes.correo_electronico','clientes.nombre as nombres','clientes.apellido',)
+                ->where('facturas.id',$request->id)
+                ->get();    
+        //$venta = Venta::findOrFail($request->get("id"));
         $pdf=PDF::loadView('ticket.pdf',['ventas'=>$venta]);
         return $pdf->stream();
         //return redirect()->back()->with("mensaje", "Ticket impreso");
@@ -27,9 +36,9 @@ class VentasController extends Controller
      */
     public function index()
     {
-        $ventasConTotales = Venta::join("productos_vendidos", "productos_vendidos.id_venta", "=", "ventas.id")
-            ->select("ventas.*", DB::raw("sum(productos_vendidos.cantidad * productos_vendidos.precio) as total"))
-            ->groupBy("ventas.id", "ventas.created_at", "ventas.updated_at", "ventas.id_cliente")
+        $ventasConTotales = Factura::join("detallefacturas", "detallefacturas.factura_id", "=", "facturas.id")
+            ->join("clientes", "facturas.cliente_id", "=", "clientes.id")
+            ->select("facturas.*","clientes.documento","clientes.nombre as nombres","clientes.apellido as apellidos",)
             ->get();
         return view("ventas.ventas_index", ["ventas" => $ventasConTotales,]);
     }

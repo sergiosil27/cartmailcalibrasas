@@ -12,7 +12,7 @@
                 </div>
                 <hr>
                 <div class="row">
-                    @foreach($platos as $pro)
+                    @foreach($productos as $pro)
                         <div class="col-lg-3">
                             <div class="card" style="margin-bottom: 20px; height: auto;">
                                 <img src="/images/platos/{{ $pro->image_path }}"
@@ -21,13 +21,13 @@
                                      alt="{{ $pro->image_path }}"
                                 >
                                 <div class="card-body">
-                                    <a href=""><h6 class="card-title">{{ $pro->nombre }}</h6></a>
-                                    <p>${{ $pro->precio }}</p>
+                                    <a href=""><h6 class="card-title">{{ $pro->descripcion }}</h6></a>
+                                    <p>${{ $pro->precio_venta }}</p>
                                     <form action="{{ route('cart.store') }}" method="POST">
                                         {{ csrf_field() }}
                                         <input type="hidden" value="{{ $pro->id }}" id="id" name="id">
-                                        <input type="hidden" value="{{ $pro->nombre }}" id="name" name="name">
-                                        <input type="hidden" value="{{ $pro->precio }}" id="price" name="price">
+                                        <input type="hidden" value="{{ $pro->descripcion }}" id="name" name="name">
+                                        <input type="hidden" value="{{ $pro->precio_venta }}" id="price" name="price">
                                         <input type="hidden" value="{{ $pro->image_path }}" id="img" name="img">
                                         <input type="hidden" value="1" id="quantity" name="quantity">
                                         <div class="card-footer" style="background-color: white;">

@@ -16,7 +16,7 @@
                         <span class="card-title">Update Proveedore</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('productos.update', $producto->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('consumibles.update', $producto->codigo) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 
@@ -25,8 +25,8 @@
                                     <h1>Editar producto</h1>
 
                                         <div class="form-group">
-                                            <label class="label">Código de barras</label>
-                                            <input required value="{{$producto->codigo_barras}}" autocomplete="off" name="codigo_barras"
+                                            <label class="label">Código</label>
+                                            <input required value="{{$producto->codigo}}" autocomplete="off" name="codigo"
                                                    class="form-control"
                                                    type="text" placeholder="Código de barras">
                                         </div>
@@ -38,15 +38,15 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="label">Precio de compra</label>
-                                            <input required value="{{$producto->precio_compra}}" autocomplete="off" name="precio_compra"
+                                            <input required value="{{$producto->precio}}" autocomplete="off" name="precio"
                                                    class="form-control"
                                                    type="decimal(9,2)" placeholder="Precio de compra">
                                         </div>
                                         <div class="form-group">
-                                            <label class="label">Precio de venta</label>
-                                            <input required value="{{$producto->precio_venta}}" autocomplete="off" name="precio_venta"
+                                            <label class="label">Nombre</label>
+                                            <input required value="{{$producto->nombre}}" autocomplete="off" name="nombre"
                                                    class="form-control"
-                                                   type="decimal(9,2)" placeholder="Precio de venta">
+                                                   type="text" placeholder="Precio de venta">
                                         </div>
                                         <div class="form-group">
                                             <label class="label">Existencia</label>
@@ -79,7 +79,7 @@
                                         </ul>
                                         @include("notificacion")
                                         <button class="btn btn-primary">Guardar</button>
-                                        <a class="btn btn-primary" href="{{route("productos.index")}}">Volver</a>
+                                        <a class="btn btn-primary" href="{{route("consumibles.index")}}">Volver</a>
                                 </div>
                             </div>
 

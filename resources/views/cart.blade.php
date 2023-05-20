@@ -2,12 +2,7 @@
 
 @section('content')
     <div class="container" style="margin-top: 80px">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Shop</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Cart</li>
-            </ol>
-        </nav>
+        
         @if(session()->has('success_msg'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session()->get('success_msg') }}

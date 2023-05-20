@@ -10,7 +10,9 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
+                        <th>Codigo Venta</th>
                         <th>Fecha</th>
+                        <th>ID_Cliente</th>
                         <th>Cliente</th>
                         <th>Total</th>
                         <th>Ticket de venta</th>
@@ -19,11 +21,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php echo $ventas ?>
+                    <?php echo ($ventas) ?>
                     @foreach($ventas as $venta)
                         <tr>
+                            <td>{{$venta->id}}</td>
                             <td>{{$venta->created_at}}</td>
-                            <td>{{$venta->id_cliente}}</td>
+                            <td>{{$venta->documento}}</td>
+                            <td>{{$venta->nombres." ".$venta->apellidos}}</td>
                             <td>${{number_format($venta->total, 2)}}</td>
                             <td>
                                 <a class="btn btn-info" href="{{route("ventas.ticket", ["id"=>$venta->id])}}">

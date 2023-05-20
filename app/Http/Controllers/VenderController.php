@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
-use App\Models\Product;
+use App\Models\Consumible;
+use App\Models\Factura;
 use App\Models\Producto;
 use App\Models\ProductoVendido;
-use App\Models\Venta;
+use App\Models\Detallefactura;
 use Illuminate\Http\Request;
 
 class VenderController extends Controller
@@ -24,26 +25,24 @@ class VenderController extends Controller
     public function terminarVenta(Request $request)
     {
         // Crear una venta
-        $venta = new Venta();
-        $venta->id_cliente = $request->input("id_cliente");
+        $venta = new Factura();
+        $venta->cliente_id = $request->id_cliente;
         $venta->saveOrFail();
         $idVenta = $venta->id;
         $productos = $this->obtenerProductos();
         // Recorrer carrito de compras
         foreach ($productos as $producto) {
             // El producto que se vende...
-            $productoVendido = new ProductoVendido();
+            $productoVendido = new Detallefactura();
             $productoVendido->fill([
-                "id_venta" => $idVenta,
-                "descripcion" => $producto->descripcion,
-                "codigo_barras" => $producto->codigo_barras,
-                "precio" => $producto->precio_venta,
+                "factura_id" => $idVenta,
+                "consumible_id" => $producto->codigo,
                 "cantidad" => $producto->cantidad,
             ]);
             // Lo guardamos
             $productoVendido->saveOrFail();
             // Y restamos la existencia del original
-            $productoActualizado = Producto::find($producto->id);
+            $productoActualizado = Consumible::find($producto->codigo);
             $productoActualizado->existencia -= $productoVendido->cantidad;
             $productoActualizado->saveOrFail();
         }
@@ -94,7 +93,7 @@ class VenderController extends Controller
     public function agregarProductoVenta(Request $request)
     {
         $codigo = $request->post("codigo");
-        $producto = Producto::where("codigo_barras", "=", $codigo)->first();
+        $producto = Consumible::where("codigo", "=", $codigo)->first();
         if (!$producto) {
             return redirect()
                 ->route("vender.index")
@@ -115,7 +114,7 @@ class VenderController extends Controller
                 ]);
         }
         $productos = $this->obtenerProductos();
-        $posibleIndice = $this->buscarIndiceDeProducto($producto->codigo_barras, $productos);
+        $posibleIndice = $this->buscarIndiceDeProducto($producto->codigo, $productos);
         // Es decir, producto no fue encontrado
         if ($posibleIndice === -1) {
             $producto->cantidad = 1;
@@ -136,7 +135,7 @@ class VenderController extends Controller
     private function buscarIndiceDeProducto(string $codigo, array &$productos)
     {
         foreach ($productos as $indice => $producto) {
-            if ($producto->codigo_barras === $codigo) {
+            if ($producto->codigo === $codigo) {
                 return $indice;
             }
         }
@@ -153,13 +152,27 @@ class VenderController extends Controller
         $total = 0;
 
         foreach ($this->obtenerProductos() as $producto) {
-            $total += $producto->cantidad * $producto->precio_venta;
+            $total += $producto->cantidad * $producto->precio;
         }
         return view("vender.vender",
             [
                 "total" => $total,
                 "clientes" => Cliente::all(),
-                "productos" => Producto::all(),
+                "productos" => Consumible::all(),
             ]);
+    }
+    public function clientes(Request $request){
+
+        $term = $request->get('term');
+        $querys = Cliente::where('documento', $term)->get();
+        $data = [];
+
+        foreach ($querys as $query){
+            $data[] = [
+                'label'=>$query->nombre,
+                'label'=>$query->telefono
+            ];
+        }
+        return $data;
     }
 }

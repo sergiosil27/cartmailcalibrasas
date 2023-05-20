@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePlatosTable extends Migration
+class CreateDetallefacturaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreatePlatosTable extends Migration
      */
     public function up()
     {
-        Schema::create('platos', function (Blueprint $table) {
+        Schema::create('detallefactura', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('descripcion');
-            $table->float('precio');
-            $table->string('image_path');
+            $table->integer('facturas_id');
+            $table->foreign('facturas_id')->references('id')->on('facturas');
+            $table->integer('consumibles_id'); 
+            $table->foreign('consumibles_id')->references('codigo')->on('consumibles');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreatePlatosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('platos');
+        Schema::dropIfExists('detallefactura');
     }
 }

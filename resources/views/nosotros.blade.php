@@ -14,7 +14,7 @@
       <div class="row">
           <div class="col-12">
               <div class="section-heading text-center mx-auto wow fadeInUp" data-wow-delay="300ms">
-                  <h3>Somos los mejores asados de Corozal</h3>
+                  <h3>Somos de los mejores asaderos de Corozal</h3>
               </div>
           </div>
       </div>
@@ -23,7 +23,7 @@
               <p>Si eres fresco, alegre, respetuoso, transparente y disfrutas lo que haces, éste es tu lugar. Requerimos auxiliares de restaurantes, domiciliarios, cajeros y administradores. Envíanos tu hoja de vida según tu ubicación de preferencia laboral: Corozal, Sincelejo, Betulia u OTROS en sucre</p>
           </div>
           <div class="col-12 col-md-6 wow fadeInUp" data-wow-delay="500ms">
-              <p>El Fondo de Empleados de cali brasas es una alternativa eficiente, oportuna y posible, para valorar los proyectos y enriquecer o mejorar el estilo de vida. Al vincularse con nosotros se obtiene una serie de posibilidades reales para lograr todo aquello que ha soñado para usted y los suyos. El Fondo de Empleados de cali brasas es una empresa del Sector Solidario creada por los Empleados de cali brasas, y a la cual se pueden vincular todos los trabajadores del Grupo Empresarial, cuyo objetivo principal es fomentar la cultura del Ahorro y apoyar el otorgamiento de créditos con miras a mejorar la calidad de vida de todos sus asociados, garantizando la solidez y el respaldo de sus ahorros y aportes sociales, de tal forma que seamos un Fondo de Empleados a Nivel Nacional que propenda por el bienestar general de todos sus asociados</p>
+              <p>El Fondo de Empleados de cali brasas es una alternativa eficiente, oportuna y posible, para valorar los proyectos y enriquecer o mejorar el estilo de vida. Al vincularse con nosotros se obtiene una serie de posibilidades reales para lograr todo aquello que ha soñado para usted y los suyos.</p>
           </div>
       </div>
       <div class="row">

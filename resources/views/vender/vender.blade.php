@@ -51,7 +51,7 @@
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Seleccionar </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
@@ -66,8 +66,20 @@
                                             <div class="col-auto mr-sm-2 mx-1 card-block  py-0 text-center radio selected ">
                                                 <div class="flex-row">
                                                     <div class="col">
-                                                        <div class="pic"> <img class="irc_mut img-fluid" src="/images/platos/{{$producto->image_path}}" width="100" height="100"> </div>
+                                                        <form action="{{route("agregarProductoVenta")}}" method="post">
+                                                            @csrf
+                                                            <input id="codigo" hidden autocomplete="off" required autofocus name="codigo" type="text"
+                                                                       class="form-control" 
+                                                                       placeholder="Código de barras" value="{{$producto->codigo}}">
+                                                            <button style="outline:none;" type="submit">
+                                                            <div class="form-group">
+                                                                
+                                                                       <div class="pic"> <img class="irc_mut img-fluid" src="/images/platos/{{$producto->image_path}}" width="100" height="100"> </div>
                                                         <p>{{$producto->descripcion}}</p>
+                                                       
+                                                            </div></button>
+                                                           
+                                                        </form>                                    
                                                     </div>
                                                 </div>
                                             </div>
@@ -75,13 +87,15 @@
                                     </div>
                                     @endforeach
                                 </div>
-
+                                
                             </div>
                         </div>
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-primary">Seleccionar</button>
                         </div>
+                        
                         </div>
                     </div>
                     </div>
@@ -106,6 +120,7 @@
                             <thead>
                             <tr>
                                 <th>Código de barras</th>
+                                <th>Nombre-</th>
                                 <th>Descripción</th>
                                 <th>Precio</th>
                                 <th>Cantidad</th>
@@ -115,9 +130,10 @@
                             <tbody>
                             @foreach(session("productos") as $producto)
                                 <tr>
-                                    <td>{{$producto->codigo_barras}}</td>
+                                    <td>{{$producto->codigo}}</td>                                    
+                                    <td>{{$producto->nombre}}</td>
                                     <td>{{$producto->descripcion}}</td>
-                                    <td>${{number_format($producto->precio_venta, 2)}}</td>
+                                    <td>${{number_format($producto->precio, 2)}}</td>
                                     <td>{{$producto->cantidad}}</td>
                                     <td>
                                         <form action="{{route("quitarProductoDeVenta")}}" method="post">
@@ -146,11 +162,6 @@
         </div>
     </div>
 
-    <select class="js-example-theme-single">
-    <option value="one">First</option>
-    <option value="two">Second (disabled)</option>
-    <option value="three">Third</option>
-  </select>
 @endsection
 
 
@@ -268,5 +279,21 @@ $(".js-example-theme-single").select2({
         $(this).addClass('selected');
     });
 });
+</script>
+<script>
+    $('#id_cliente').autocomplete({
+        source: function(request, response) {
+            $.ajax({
+                url: "{{route('search.clientes')}}",
+                dataType: 'json',
+                data:{
+                    term:request.term,
+                },
+                success: function(data){
+                    response.json(data);
+                }
+            })
+        }
+    })
 </script>
 @stop

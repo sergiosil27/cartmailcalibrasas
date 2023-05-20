@@ -8,9 +8,11 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProveedoreController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\ConsumiblesController;
 use App\Http\Controllers\VentasController;
 use App\Http\Controllers\PlatoController;
 use App\Http\Controllers\VenderController;
+use App\Http\Controllers\ReportesController;
 
 use App\Proveedore;
 
@@ -70,15 +72,17 @@ Route::resource('admin/products', ProductController::class);
 Route::resource('admin/proveedores', ProveedoreController::class);
 Route::resource('admin/platos', PlatoController::class);
 Route::resource('admin/clientes', ClientesController::class);
-Route::resource('admin/productos', ProductosController::class);
+Route::resource('admin/consumibles', ConsumiblesController::class);
+
+Route::get('admin/reportes', [ReportesController::class,"index"]);
+Route::post('admin/reportes', [ReportesController::class,"generar"])->name('reportes.generar');
 
 Route::resource('admin/ventas', VentasController::class);
 
 Route::get("/ventas/ticket", [VentasController::class,"ticket"])->name("ventas.ticket");
 Route::resource('/ventas', VentasController::class);
 Route::get("admin/vender", [VenderController::class,"index"])->name("vender.index");
-
 Route::post("/productoDeVenta", [VenderController::class,"agregarProductoVenta"])->name("agregarProductoVenta");
 Route::delete("/productoDeVenta", [VenderController::class,"quitarProductoDeVenta"])->name("quitarProductoDeVenta");
 Route::post("/terminarOCancelarVenta", [VenderController::class,"terminarOCancelarVenta"])->name("terminarOCancelarVenta");
-
+Route::get("search/cliente", [VenderController::class,"clientes"])->name('search.clientes');

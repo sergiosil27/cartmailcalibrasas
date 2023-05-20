@@ -5,27 +5,28 @@
     <div class="row">
         <div class="col-12">
             <h1>Agregar producto</h1>
-            <form method="POST" action="{{route("productos.store")}}" role="form" enctype="multipart/form-data">
+            <form method="POST" action="{{route("consumibles.store")}}" role="form" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label class="label">Código de barras</label>
-                    <input required autocomplete="off" name="codigo_barras" class="form-control"
+                    <input required autocomplete="off" name="codigo" class="form-control"
                            type="text" placeholder="Código de barras">
+                </div>
+                <div class="form-group">
+                    <label class="label">Nombre</label>
+                    <input required autocomplete="off" name="nombre" class="form-control"
+                           type="text" placeholder="nombre">
                 </div>
                 <div class="form-group">
                     <label class="label">Descripción</label>
                     <input required autocomplete="off" name="descripcion" class="form-control"
                            type="text" placeholder="Descripción">
                 </div>
-                <div class="form-group">
-                    <label class="label">Precio de compra</label>
-                    <input required autocomplete="off" name="precio_compra" class="form-control"
-                           type="decimal(9,2)" placeholder="Precio de compra">
-                </div>
+            
                 <div class="form-group">
                     <label class="label">Precio de venta</label>
-                    <input required autocomplete="off" name="precio_venta" class="form-control"
-                           type="decimal(9,2)" placeholder="Precio de venta">
+                    <input required autocomplete="off" name="precio" class="form-control"
+                           type="decimal(9,2)" placeholder="Precio">
                 </div>
                 <div class="form-group">
                     <label class="label">Existencia</label>
@@ -62,7 +63,7 @@
 
                 @include("notificacion")
                 <button class="btn btn-success">Guardar</button>
-                <a class="btn btn-primary" href="{{route("productos.index")}}">Volver al listado</a>
+                <a class="btn btn-primary" href="{{route("consumibles.index")}}">Volver al listado</a>
             </form>
         </div>
     </div>

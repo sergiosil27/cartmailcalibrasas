@@ -43,7 +43,7 @@ class Product extends Model
      */
     public function proveedore()
     {
-        return $this->hasOne('App\Proveedore', 'id', 'proveedor_id');
+        return $this->hasOne('App\Models\Proveedore', 'id', 'proveedor_id');
     }
 
 

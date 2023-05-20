@@ -14,27 +14,27 @@
                             <span class="card-title">Show producto</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('productos.index') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('consumibles.index') }}"> Back</a>
                         </div>
                     </div>
 
                     <div class="card-body">
 
                         <div class="form-group">
-                            <strong>Código de barras:</strong>
-                            {{ $producto->codigo_barras }}
+                            <strong>Código:</strong>
+                            {{ $producto->codigo }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Nombre:</strong>
+                            {{ $producto->nombre }}
                         </div>
                         <div class="form-group">
                             <strong>Descripción:</strong>
                             {{ $producto->descripcion }}
                         </div>
                         <div class="form-group">
-                            <strong>Precio de compra:</strong>
-                            {{ $producto->precio_compra }}
-                        </div>
-                        <div class="form-group">
                             <strong>Precio de venta:</strong>
-                            {{ $producto->precio_venta }}
+                            {{ $producto->precio }}
                         </div>
                         <div class="form-group">
                             <strong>Existencia:</strong>
