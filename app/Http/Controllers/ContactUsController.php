@@ -25,8 +25,8 @@ class ContactUsController extends Controller{
    $content->save();
       
 
-      Mail::to($content->email)->send(new contacto($content));
+      Mail::to('sergio.sil.27@hotmail.com')->send(new contacto($content));
 
-      return redirect('/nosotros');
+      return redirect('/nosotros')->with('success', 'Se envio el email correctamente');
    }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Consumible;
 use App\Models\Plato;
 use App\Models\Producto;
 use Illuminate\Http\Request;
@@ -11,7 +11,7 @@ class CartController extends Controller
 {   
     public function shop()
     {
-        $productos = Producto::all();
+        $productos = Consumible::all();
         //return $products;
         return view('shop')->with(['productos' => $productos]);
 

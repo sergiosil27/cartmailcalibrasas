@@ -6,11 +6,12 @@
     <title>Solicitud de contacto</title>
 </head>
 <body>
-    <p>Buenas tardes, quisera que se pusieran en contacto conmigo para una cotizacion para mi empresa de venta de ropa.</p>
+    <p>Buenas, quisera que se pusieran en contacto conmigo.</p>
     <p></p>
     <ul>
-        <li>Nombre: sergio silgado </li>
-        <li>email: sergil.sil.27@gmail.com:</li>
+        <li>Nombre: {{$contactUs->name}}} </li>
+        <li>email: {{$contactUs->email}}</li>
+        <li>Mensaje: {{$contactUs->message}}</li>
         
     </ul>
     <p></p>

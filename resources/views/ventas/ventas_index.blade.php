@@ -2,12 +2,33 @@
 
 @section("titulo", "Ventas")
 @section("content")
+<div class="container-fluid">
     <div class="row">
-        <div class="col-12">
-            <h1>Ventas</h1>
-            @include("notificacion")
-            <div class="table-responsive">
-                <table class="table table-bordered">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+
+                        <span id="card_title">
+                            {{ __('Ventas') }}
+                        </span>
+
+                         <div class="float-right">
+                            <a href="{{ route('vender.index') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                              {{ __('Registrar Venta') }}
+                            </a>
+                          </div>
+                    </div>
+                </div>
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+                @endif
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                <table class="table table-striped table-hover">
                     <thead>
                     <tr>
                         <th>Codigo Venta</th>
@@ -35,7 +56,7 @@
                                 </a>
                             </td>
                             <td>
-                                <a class="btn btn-success" href="{{route("ventas.show", $venta)}}">
+                                <a class="btn btn-success" href="{{route("ventas.show", [$venta])}}">
                                     <i class="fa fa-info"></i>
                                 </a>
                             </td>
@@ -52,6 +73,9 @@
                     @endforeach
                     </tbody>
                 </table>
+            </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -12,7 +12,11 @@
                             <span id="card_title">
                                 {{ __('Vender') }}
                             </span>
-
+                            <div class="float-right">
+                                <a href="{{ route('clientes.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                  {{ __('Registrar Nuevo Cliente') }}
+                                </a>
+                              </div>
 
                         </div>
                     </div>
@@ -27,9 +31,9 @@
                             @csrf
                             <div class="form-group">
                                 <label for="id_cliente">Cliente</label>
-                                <select required class="form-control" name="id_cliente" id="id_cliente">
+                                <select required class="form-control js-example-basic-single" name="id_cliente" id="id_cliente">
                                     @foreach($clientes as $cliente)
-                                        <option value="{{$cliente->id}}">{{$cliente->nombre}}</option>
+                                        <option value="{{$cliente->id}}">{{$cliente->documento.' - '.$cliente->nombre.' '.$cliente->apellido}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -46,7 +50,7 @@
                         </form>
                     </div>
                     <!--modal-->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Seleccionar Platos</button>
                         <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -167,6 +171,7 @@
 
 @section('css')
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <style>
     body {
     letter-spacing: 0.7px;
@@ -268,7 +273,9 @@ p {
 <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
-$(".js-example-theme-single").select2({
+// In your Javascript (external .js resource or <script> tag)
+    $(document).ready(function() {
+    $('.js-example-basic-single').select2();
 });
 </script>
 <script>
@@ -280,20 +287,5 @@ $(".js-example-theme-single").select2({
     });
 });
 </script>
-<script>
-    $('#id_cliente').autocomplete({
-        source: function(request, response) {
-            $.ajax({
-                url: "{{route('search.clientes')}}",
-                dataType: 'json',
-                data:{
-                    term:request.term,
-                },
-                success: function(data){
-                    response.json(data);
-                }
-            })
-        }
-    })
-</script>
+
 @stop

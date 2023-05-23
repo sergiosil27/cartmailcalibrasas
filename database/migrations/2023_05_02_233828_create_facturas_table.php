@@ -19,8 +19,7 @@ class CreateFacturasTable extends Migration
             $table->foreign("cliente_id")
                 ->references("id")
                 ->on("clientes")
-                ->onDelete("cascade")
-                ->onUpdate("cascade");
+                ->onDelete("cascade");
             $table->timestamps();
         });
     }

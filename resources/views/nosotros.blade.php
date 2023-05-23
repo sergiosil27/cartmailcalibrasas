@@ -4,7 +4,7 @@
 
 
 @section('content')
-<div class="breadcumb-area bg-img" style="background-image: url(https://forestsnews.cifor.org/wp-content/uploads/2017/04/31926107463_ac197ac635_k.jpg);">
+<div class="breadcumb-area bg-img" style="background-image: url(https://i.blogs.es/34bd70/foto-apertura/1366_2000.jpg);">
   <div class="bradcumbContent">
       <h2>Nosotros</h2>
   </div>
@@ -26,16 +26,7 @@
               <p>El Fondo de Empleados de cali brasas es una alternativa eficiente, oportuna y posible, para valorar los proyectos y enriquecer o mejorar el estilo de vida. Al vincularse con nosotros se obtiene una serie de posibilidades reales para lograr todo aquello que ha soñado para usted y los suyos.</p>
           </div>
       </div>
-      <div class="row">
-          <div class="col-12">
-              <div class="about-slides owl-carousel mt-100 wow fadeInUp" data-wow-delay="600ms">
-                
-                  
-                  
-                  <img src="https://i.blogs.es/34bd70/foto-apertura/1366_2000.jpg" alt="">
-              </div>
-          </div>
-      </div>
+    
   </div>
 </section>
 <section class="teachers-area section-padding-0-100">
@@ -95,21 +86,10 @@
               </div>
           </div>
       </div>
-      <div class="row">
-          <div class="col-12">
-              <div class="view-all text-center wow fadeInUp" data-wow-delay="800ms">
-                  <a href="#" class="btn academy-btn">Todos los trabajadores</a>
-              </div>
-          </div>
-      </div>
+      
   </div>
-  <div class="col-12" style="text-align: center; margin-top: 15%;">
-      <div class="elements-title mb-50">
-          <h2>Estadisticas</h2>
-      </div>
-  </div>
-  <div class="container">
-    <h1>Contact US Form</h1>
+  <div class="container" style="margin-bottom: 30px">
+    <h1>Formulario de contacto</h1>
     
     @if(Session::has('success'))
        <div class="alert alert-success">

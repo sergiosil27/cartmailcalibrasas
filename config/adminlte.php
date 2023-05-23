@@ -312,6 +312,20 @@ return [
             'can'  => 'manage-blog',
         ],
         [
+            'text'        => 'Usuarios',
+            'url'         => 'admin/users',
+            'icon'        => 'far fa-fw fa-user',
+            'label_color' => 'success',
+            'can' => 'admin.users.index',
+        ],
+        [
+            'text'        => 'Lista de roles',
+            'url'         => 'admin/roles',
+            'icon'        => 'far fa-fw fa-user-cog',
+            'label_color' => 'success',
+            #'can' => 'admin.users.index',
+        ],
+        [
             'text'        => 'Vender',
             'url'         => 'admin/vender',
             'icon'        => 'far fa-fw fa-file',

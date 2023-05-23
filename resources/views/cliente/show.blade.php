@@ -42,7 +42,7 @@
                         </div>
                         <div class="form-group">
                             <strong>Email:</strong>
-                            {{ $cliente->email }}
+                            {{ $cliente->correo_electronico }}
                         </div>
 
                     </div>
