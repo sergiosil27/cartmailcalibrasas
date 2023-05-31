@@ -22,6 +22,7 @@ class ReportesController extends Controller
         $fechafin=$request["fechafin"];
         $venta = Venta::select('ventas.*','clientes.id','clientes.nombre')
                 ->join('clientes','ventas.id_cliente','=','clientes.id')
+                ->whereBetween('fecha',$fechaini and $fechafin)
                 ->get();
         //$venta = Venta::findOrFail($request->get("id"));
         $pdf=PDF::loadView('ticket.reporte',['ventas'=>$venta]);

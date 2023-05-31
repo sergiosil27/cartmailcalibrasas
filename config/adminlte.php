@@ -253,7 +253,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'dashboard',
+    'dashboard_url' => '/',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -321,9 +321,9 @@ return [
         [
             'text'        => 'Lista de roles',
             'url'         => 'admin/roles',
-            'icon'        => 'far fa-fw fa-user-cog',
+            'icon'        => 'far fa-fw fa-users-cog',
             'label_color' => 'success',
-            #'can' => 'admin.users.index',
+            #'can' => 'admin.roles.edit',
         ],
         [
             'text'        => 'Vender',
@@ -337,6 +337,7 @@ return [
             'icon'        => 'far fa-fw fa-file',
             'label'       => 4,
             'label_color' => 'success',
+            'can' => 'admin.clientes.index'
         ],
         [
             'text'        => 'Productos',

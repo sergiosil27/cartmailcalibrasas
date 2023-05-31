@@ -9,7 +9,7 @@
     <p>Buenas, quisera que se pusieran en contacto conmigo.</p>
     <p></p>
     <ul>
-        <li>Nombre: {{$contactUs->name}}} </li>
+        <li>Nombre: {{$contactUs->name}} </li>
         <li>email: {{$contactUs->email}}</li>
         <li>Mensaje: {{$contactUs->message}}</li>
         

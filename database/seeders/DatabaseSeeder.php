@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Factura;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -18,6 +19,9 @@ class DatabaseSeeder extends Seeder
         #\App\Models\Cliente::factory(100)->create();
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
+
+
+
 
     }
 }

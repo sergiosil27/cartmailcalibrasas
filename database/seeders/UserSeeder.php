@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
         'email' => 'sergio.sil.27@hotmail.com',
         'password' => bcrypt('123456789')
        ])->syncRoles(['admin']);
-       User::factory(5)->create();
+       User::factory(8)->create();
 
     }
 }

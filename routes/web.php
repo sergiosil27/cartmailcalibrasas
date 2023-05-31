@@ -73,7 +73,7 @@ Route::middleware([
 Route::resource('admin/products', ProductController::class);
 Route::resource('admin/proveedores', ProveedoreController::class);
 Route::resource('admin/platos', PlatoController::class);
-Route::resource('admin/clientes', ClientesController::class);
+Route::resource('admin/clientes', ClientesController::class)->middleware('can:admin.clientes.index');
 Route::resource('admin/consumibles', ConsumiblesController::class);
 Route::get('admin/reportes', [ReportesController::class,"index"]);
 Route::post('admin/reportes', [ReportesController::class,"generar"])->name('reportes.generar');
@@ -85,6 +85,6 @@ Route::post("/productoDeVenta", [VenderController::class,"agregarProductoVenta"]
 Route::delete("/productoDeVenta", [VenderController::class,"quitarProductoDeVenta"])->name("quitarProductoDeVenta");
 Route::post("/terminarOCancelarVenta", [VenderController::class,"terminarOCancelarVenta"])->name("terminarOCancelarVenta");
 Route::get("search/cliente", [VenderController::class,"clientes"])->name('search.clientes');
-Route::resource('admin/users', UserController::class)->middleware('can:admin.users');
-Route::resource('admin/roles', RoleController::class);
+Route::resource('admin/users', UserController::class)->middleware('can:admin.users.index');
+Route::resource('admin/roles', RoleController::class);#->middleware('can:admin.roles.index');
 });

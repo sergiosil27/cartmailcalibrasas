@@ -36,8 +36,7 @@ class VentasController extends Controller
      */
     public function index()
     {
-        $ventasConTotales = Factura::join("detallefacturas", "detallefacturas.factura_id", "=", "facturas.id")
-            ->join("clientes", "facturas.cliente_id", "=", "clientes.id")
+        $ventasConTotales = Factura::join("clientes", "facturas.cliente_id", "=", "clientes.id")
             ->select("facturas.*","clientes.documento","clientes.nombre as nombres","clientes.apellido as apellidos",)
             ->get();
         return view("ventas.ventas_index", ["ventas" => $ventasConTotales,]);

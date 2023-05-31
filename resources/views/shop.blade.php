@@ -7,7 +7,7 @@
             <div class="col-lg-12">
                 <div class="row">
                     <div class="col-lg-7">
-                        <h4>Products In Our Store</h4>
+                        <h4>Menú </h4>
                     </div>
                 </div>
                 <hr>
@@ -25,8 +25,8 @@
                                     <p>$ {{ number_format($pro->precio) }}</p>
                                     <form action="{{ route('cart.store') }}" method="POST">
                                         {{ csrf_field() }}
-                                        <input type="hidden" value="{{ $pro->id }}" id="id" name="id">
-                                        <input type="hidden" value="{{ $pro->descripcion }}" id="name" name="name">
+                                        <input type="hidden" value="{{ $pro->codigo }}" id="id" name="id">
+                                        <input type="hidden" value="{{ $pro->nombre }}" id="name" name="name">
                                         <input type="hidden" value="{{ $pro->precio}}" id="price" name="price">
                                         <input type="hidden" value="{{ $pro->image_path }}" id="img" name="img">
                                         <input type="hidden" value="1" id="quantity" name="quantity">

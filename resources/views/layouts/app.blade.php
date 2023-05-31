@@ -133,10 +133,16 @@
                                 <i class="icon-telephone-1"></i>
                                 <p>Fijo: 345 6788 <br>Oficina: 300 810 8889</p>
                             </div>
+                            <div class="single-contact d-flex mb-30">
+                                <i class="icon-contract"></i>
+                                <p>calibrasas@gmail.com</p>s
+                            </div>
                             <div class="single-contact d-flex">
                                 <i class="icon-contract"></i>
-                                <p>calibrasas@gmail.com</p>
+                                <a style="color:dimgray" href="http://localhost/CALIBRASA/"> sitios externos </a>
+                                
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>

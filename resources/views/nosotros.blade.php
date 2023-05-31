@@ -57,7 +57,7 @@
                   
                   </div>
                   <div class="teachers-info mt-30">
-                      <h5>SERGIO ANDRES SILGADO</h5>
+                      <h5> <a href="http://localhost/sergio/">SERGIO ANDRES SILGADO</a> </h5>
                       <span>GERENTE GENERAL</span>
                   </div>
               </div>
